@@ -52,7 +52,7 @@ public class ServerStatus implements StatusbotEventRaiser {
 	private void connect() {
 		this.serverConnection = new Socket();
 		try {
-			this.serverConnection.setSoTimeout(4000);
+			this.serverConnection.setSoTimeout(10000);
 		} catch (Exception e) {
 			System.out.println("(probably) Non-fatal: failed to set socket timeout: " + e.getMessage());
 		}
@@ -103,11 +103,12 @@ public class ServerStatus implements StatusbotEventRaiser {
 		}
 			
 		// Read the first byte of the response
+		// generally where it fails
 		try {
 			firstByte = inStream.read();
 		} catch (Exception e) {
-			System.out.println("(maybe) Non-fatal: failed to read socket input stream, skipping this check: " + e.getMessage());
-			return true;
+			System.out.println("Possibly fatal: Failed to read socket input stream, beginning reboot sequence: " + e.getMessage());
+			return false;
 		}
 			
 		// An improper response is interpreted as the server being down
