@@ -25,7 +25,7 @@ public class IRCBot extends PircBot implements StatusbotEventRaiser {
     	String command = message.substring(message.lastIndexOf("!") + 1);
     	// Help listing
     	if (command.equalsIgnoreCase("help")) {
-    		this.outputMessages(new String[]{"Commands: !gameversion !motd !playersonline !reboot"});
+    		this.outputMessages(new String[]{"Commands: !gameversion !motd !playersonline !reboot !kill"});
     		//sendMessage(channel, "!pingversion");
     		//sendMessage(channel, "!protocolversion");
     	}
@@ -42,6 +42,9 @@ public class IRCBot extends PircBot implements StatusbotEventRaiser {
     	}
     	if (command.equalsIgnoreCase("reboot")) {
     		this.raiseStatusRequestEvent("reboot");    		
+    	}
+    	if (command.equalsIgnoreCase("kill")) {
+    		System.exit(0);    		
     	}
     }
     

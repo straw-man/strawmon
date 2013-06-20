@@ -52,7 +52,7 @@ public class ServerStatus implements StatusbotEventRaiser {
 	private void connect() {
 		this.serverConnection = new Socket();
 		try {
-			this.serverConnection.setSoTimeout(10000);
+			this.serverConnection.setSoTimeout(15000);
 		} catch (Exception e) {
 			System.out.println("(probably) Non-fatal: failed to set socket timeout: " + e.getMessage());
 		}
@@ -107,8 +107,20 @@ public class ServerStatus implements StatusbotEventRaiser {
 		try {
 			firstByte = inStream.read();
 		} catch (Exception e) {
-			System.out.println("Possibly fatal: Failed to read socket input stream, beginning reboot sequence: " + e.getMessage());
-			return false;
+			System.out.println("Possibly fatal: Failed to read socket input stream, double-checking: " + e.getMessage());
+			try {
+				this.disconnect();
+				Thread.sleep(30000);
+				this.connect();
+				inStream = this.serverConnection.getInputStream();
+				out = new DataOutputStream(this.serverConnection.getOutputStream());
+				inStreamReader = new InputStreamReader(inStream, Charset.forName("UTF-16BE"));
+				out.write(this.serverListPingRequest);
+				firstByte = inStream.read();
+			} catch (Exception f) {
+				System.out.println("Double-check failed, starting reboot sequence: " + f.getMessage());
+				return false;
+			}
 		}
 			
 		// An improper response is interpreted as the server being down

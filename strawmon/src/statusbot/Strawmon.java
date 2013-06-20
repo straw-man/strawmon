@@ -38,7 +38,7 @@ public class Strawmon implements StatusbotEventListener {
 			
 		}
 
-		this.talker.outputMessages(new String[]{"StrawMon v0.3prealpha joined. Say !help for commands."});
+		this.talker.outputMessages(new String[]{"StrawMon v0.4alpha joined. Say !help for commands."});
 		
 		this.watchStatus();
 	}
