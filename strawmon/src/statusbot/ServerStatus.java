@@ -296,7 +296,14 @@ public class ServerStatus implements StatusbotEventRaiser {
 				//} catch (Exception e) {
 				//	
 				//}
-				return new String[]{"Chat-triggered reboot not yet implemented."};
+				
+				//return new String[]{"Chat-triggered reboot not yet implemented."};
+				if (this.playersOnline < 2) {
+					return new String[]{"Low population: troll protection activated. Restarting in three minutes. !nay to abort."};
+				} else {
+					return new String[]{"[name] has introduced a motion to restart the server. Is the motion seconded? (!second)"};
+				}
+				
 			default:
 				return new String[]{"Invalid request"};
 		}
