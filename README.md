@@ -17,3 +17,4 @@ Design pass on events
 !moveme command  
 Scheduled restarts  
 Cold boot  
+*bugfix: require ! for commands
