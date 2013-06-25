@@ -1,7 +1,8 @@
 StrawMon
 ========
 
-Monitors and reboots Minecraft server crashes and offers basic administrative functionality through IRC.
+Monitors and reboots Minecraft server crashes and offers basic administrative functionality through IRC.  
+Current version: **0.4alpha**
 
 0.5beta Feature Goals
 ---------------------
@@ -17,4 +18,19 @@ Design pass on events
 !moveme command  
 Scheduled restarts  
 Cold boot  
-*bugfix: require ! for commands
+*bugfix: require ! for commands  
+
+0.6beta Feature Goals
+---------------------
+
+Generalize for use as a library  
+
+0.7beta (optional) Feature Goals
+--------------------------------
+
+Unit test coverage  
+
+1.0 Launch Goals
+----------------
+
+Successful unit testing and/or long-duration production testing
